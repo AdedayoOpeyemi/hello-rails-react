@@ -1,7 +1,12 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
 
 const initialState = {
-  messages: []
+  greetings: [
+    {
+      message: "what is going on"
+    }
+  ]
 };
 
 function rootReducer(state, action) {
@@ -13,6 +18,10 @@ function rootReducer(state, action) {
 }
 
 export default function configureStore() {
-  const store = createStore(rootReducer, initialState);
+  const store = createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(thunk)
+  );
   return store;
 }
