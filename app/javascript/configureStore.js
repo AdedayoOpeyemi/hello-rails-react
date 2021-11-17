@@ -12,9 +12,10 @@ const initialState = {
 function rootReducer(state, action) {
   console.log(action.type);
   switch (action.type) {
-    default:
-      return state
+    case "GET_GREETINGS_SUCCESS":
+      return { greetings: action.greetings };
   }
+  return state
 }
 
 export default function configureStore() {
