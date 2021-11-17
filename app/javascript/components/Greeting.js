@@ -7,7 +7,6 @@ const GET_GREETINGS_REQUEST = 'GET_GREETINGS_REQUEST';
 const GET_GREETINGS_SUCCESS = 'GET_GREETINGS_SUCCESS';
 
 const getGreetings = () => {
-  console.log('getGreeting() Action')
   return dispatch => {
     dispatch({ type: GET_GREETINGS_REQUEST });
     return fetch(`api/v1/greetings`)
