@@ -15,7 +15,7 @@ class App extends React.Component {
         <Router>
           <Routes>
             <Route exact path="/" element={ <p>Home Page!!</p> } />
-            <Route exact path="/greeting" element={ <Greeting message="How do you do"/> } />
+            <Route exact path="/greeting" element={ <Greeting hint="How do you do"/> } />
           </Routes>
         </Router>
       </Provider>

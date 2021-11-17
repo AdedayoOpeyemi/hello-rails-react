@@ -9,11 +9,10 @@ const GET_GREETINGS_SUCCESS = 'GET_GREETINGS_SUCCESS';
 const getGreetings = () => {
   console.log('getGreeting() Action')
   return dispatch => {
-    // dispatch({ type: GET_GREETINGS_REQUEST });
-    return fetch(`http://localhost:3000/api/v1/greetings`)
-    .then(response => console.log(response))
-    // .then(response => response.json())
-    // .then(json => dispatch(getGreetingsSuccess(json)))
+    dispatch({ type: GET_GREETINGS_REQUEST });
+    return fetch(`api/v1/greetings`)
+    .then(response => response.json())
+    .then(json => dispatch(getGreetingsSuccess(json)))
     .catch(error => console.log(error));
   } 
 }
@@ -29,34 +28,27 @@ export function getGreetingsSuccess(json) {
 
 class Greeting extends React.Component {
   render () {
-    const { greetings } = this.props;
-    console.log(greetings);
-    const greetingsList = greetings.map((greeting) => {
-      return <li>{greeting.message}</li>
-    })
-  
+    const { message } = this.props;
     return (
       <React.Fragment>
-        Message: {this.props.message}
+        Message: {this.props.hint}
 
         <button className="getGreetingBtn" onClick={() => this.props.getGreetings()}>Say Greeting</button>
         <br />
-        <ul>{ greetingsList }</ul>
-        {/* <p>{ greetings.message }</p> */}
+        <p>{ message }</p>
       </React.Fragment>
     );
   }
 }
 
 const structuredSelector = createStructuredSelector({
-  greetings: state => state.greetings,
+  message: state => state.message,
 });
 
 const mapDispatchToProps = { getGreetings };
 
-// Greeting.propTypes = {
-//   message: PropTypes.string
-// };
-// export default Greeting
+Greeting.propTypes = {
+  message: PropTypes.string
+};
 
 export default connect(structuredSelector, mapDispatchToProps)(Greeting);
