@@ -6,8 +6,6 @@ const initialState = {
 };
 
 function rootReducer(state, action) {
-  console.log(action.type);
-  console.log(action)
   switch (action.type) {
     case "GET_GREETINGS_SUCCESS":
       return { message: action.json.message };
